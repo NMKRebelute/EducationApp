@@ -26,8 +26,34 @@ class SplashViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        CommonMethods.shared.addCornerRadius(toView: loginBtn, radius: 20.0, borderWidth: nil, borderColor: nil)
-        loginBtn.setTitle("LOGIN", for: .normal)
+//        if let bgImgData = UserDefaults.standard.value(forKey: STORED_BG_IMAGE) as? Data {
+//            
+//            if let img = UIImage(data: bgImgData) {
+//                bgImgView.image = img
+//            }
+//        }
+//        
+//        if let logoImgData = UserDefaults.standard.value(forKey: STORED_LOGO_IMAGE) as? Data {
+//            
+//            if let img = UIImage(data: logoImgData) {
+//                logoImgView.image = img
+//            }
+//        }
+        
+        CommonMethods.shared.addCornerRadius(toView: loginBtn, radius: 15.0, borderWidth: nil, borderColor: nil)
+        
+        if UserDefaults.standard.value(forKey: STORED_USERID) != nil {
+            
+            loginBtn.setTitle("Continue", for: .normal)
+            registerBtn.isHidden = true
+            
+        }else {
+            
+            loginBtn.setTitle("LOGIN", for: .normal)
+            registerBtn.isHidden = false
+        }
+        
+        
         
         getData()
     }
@@ -71,7 +97,9 @@ class SplashViewController: UIViewController {
                 if let dataDict = dict[API_DATA] as? [String:AnyObject] {
                     
                     if let pageName = dataDict[PAGE_NAME] as? String {
+                        
                         self.headingLbl.text = pageName
+                        self.headingLbl.sizeToFit()
                     }
                     
                     if let description = dataDict[DESCRIPTION] as? String {
@@ -81,12 +109,31 @@ class SplashViewController: UIViewController {
                             if let convertedStr = try description.convertHtmlSymbols() {
                                 
                                 self.subHeadingLbl.text = convertedStr
+                                self.subHeadingLbl.sizeToFit()
                             }
                             
                         }catch let error {
                             print(error.localizedDescription)
                         }
                     }
+                    
+                    if let bgImgStr = dataDict[BG_IMAGE] as? String {
+                        
+                        let imgURLString = IMAGE_SERVICE_URL + bgImgStr
+                        
+                        CommonMethods.shared.setImageTo(imgView: bgImgView, with: imgURLString, placeHolderImg: DEFAULT_BG_IMAGE!)
+                        
+                    }
+                    
+                    if let logoImgStr = dataDict[LOGO_IMAGE] as? String {
+                        
+                        let imgURLString = IMAGE_SERVICE_URL + logoImgStr
+                        
+                        CommonMethods.shared.setImageTo(imgView: logoImgView, with: imgURLString, placeHolderImg: DEFAULT_BG_IMAGE!)
+                        
+                    }
+                    
+                    self.view.layoutIfNeeded()
                     
                 }
                 
@@ -100,10 +147,54 @@ class SplashViewController: UIViewController {
     
     @IBAction func loginBtnTapped(_ sender: Any) {
         
-        self.performSegue(withIdentifier: "login", sender: self)
+        if let bgImg = bgImgView.image {
+            
+            if let data = UIImagePNGRepresentation(bgImg) {
+                UserDefaults.standard.set(data, forKey: STORED_BG_IMAGE)
+            }
+            
+        }
+        
+        if let logoImg = logoImgView.image {
+            
+            if let data = UIImagePNGRepresentation(logoImg) {
+                UserDefaults.standard.set(data, forKey: STORED_LOGO_IMAGE)
+            }
+            
+        }
+        
+        let sender = sender as! UIButton
+        
+        if sender.titleLabel?.text == "Continue" {
+            
+            // Show Home
+            
+            TransitionManager.shared.showHome()
+            
+        }else {
+            self.performSegue(withIdentifier: "login", sender: self)
+        }
+        
+        
     }
 
     @IBAction func registerBtnTapped(_ sender: Any) {
+        
+        if let bgImg = bgImgView.image {
+            
+            if let data = UIImagePNGRepresentation(bgImg) {
+                UserDefaults.standard.set(data, forKey: STORED_BG_IMAGE)
+            }
+            
+        }
+        
+        if let logoImg = logoImgView.image {
+            
+            if let data = UIImagePNGRepresentation(logoImg) {
+                UserDefaults.standard.set(data, forKey: STORED_LOGO_IMAGE)
+            }
+            
+        }
         
         self.performSegue(withIdentifier: "register", sender: self)
     }

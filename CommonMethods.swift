@@ -7,7 +7,8 @@
 //
 
 import UIKit
-
+import SDWebImage
+import EZLoadingActivity
 
 class CommonMethods {
     
@@ -46,7 +47,7 @@ class CommonMethods {
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let OKAction = UIAlertAction(title: "OK", style: .default) { (UIALERTACTION) in
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
             
             OKActionHandler()
         }
@@ -58,6 +59,45 @@ class CommonMethods {
         
         sender.present(alert, animated: true, completion: nil)
         
+    }
+    
+    //MARK: Common method for showing loader
+    
+    func showLoaderWith(title:String) {
+        
+        EZLoadingActivity.Settings.BackgroundColor = EAColors.white
+        EZLoadingActivity.show(title, disableUI: true)
+    }
+    
+    //MARK: Hide Loader
+    
+    func hideLoader() {
+        
+        EZLoadingActivity.hide()
+    }
+    
+    //MARK: Common method for setting image to imageView
+    
+    func setImageTo(imgView:UIImageView, with URLString:String, placeHolderImg:UIImage) {
+        
+        if let imgURL = URL(string: URLString) {
+            
+            imgView.sd_setImage(with: imgURL, placeholderImage: placeHolderImg)
+            return
+        }
+        
+        imgView.image = placeHolderImg
+        
+    }
+    
+    //MARK: Common Method for Email validation
+    
+    func isValidEmail(testStr:String) -> Bool {
+
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: testStr)
     }
     
 }

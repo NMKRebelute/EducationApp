@@ -41,7 +41,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="asL-Fk-YGT">
                                 <rect key="frame" x="87.5" y="567" width="200" height="35"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.0" green="0.42745098040000001" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="loginBtnTapped:" destination="uA5-IR-w8E" eventType="touchUpInside" id="j1A-gh-huP"/>
                                 </connections>
@@ -60,6 +62,7 @@
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="s7D-wX-wCq">
                                 <rect key="frame" x="5" y="84" width="365" height="394"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -105,7 +108,7 @@
         <!--Login View Controller-->
         <scene sceneID="9bN-4A-rjX">
             <objects>
-                <viewController id="XIa-Cc-5IH" customClass="LoginViewController" customModule="EducationApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="XIa-Cc-5IH" customClass="LoginViewController" customModule="EducationApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LEk-0K-5OQ"/>
                         <viewControllerLayoutGuide type="bottom" id="nrd-jy-0fk"/>
@@ -208,26 +211,30 @@
                                     <constraint firstAttribute="height" constant="40" id="oHS-Zc-PXz"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TKm-sX-Chl">
-                                <rect key="frame" x="207" y="612" width="50" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TKm-sX-Chl">
+                                <rect key="frame" x="207" y="612.5" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="3iw-D9-c8W"/>
                                     <constraint firstAttribute="width" constant="50" id="kpr-mk-Rfr"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
-                                <state key="normal" title="G+">
+                                <state key="normal" image="gplus">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="gplusBtnTapped:" destination="XIa-Cc-5IH" eventType="touchUpInside" id="rJq-jz-b6U"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Asl-4W-xAV">
-                                <rect key="frame" x="117" y="612" width="50" height="50"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
-                                <state key="normal" title="f">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Asl-4W-xAV">
+                                <rect key="frame" x="117" y="612.5" width="50" height="50"/>
+                                <state key="normal" image="fb">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="faceBookBtnTapped:" destination="XIa-Cc-5IH" eventType="touchUpInside" id="xHb-Uy-h5K"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR Connect With" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5b-3q-JGl">
-                                <rect key="frame" x="121.5" y="569" width="132.5" height="20"/>
+                                <rect key="frame" x="121.5" y="569.5" width="132.5" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="Hig-g2-SAh"/>
                                 </constraints>
@@ -236,18 +243,18 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fvg-E4-FuP">
-                                <rect key="frame" x="264" y="578.5" width="91" height="1"/>
+                                <rect key="frame" x="264" y="579" width="91" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="5PM-hZ-Db9"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t7y-Cf-a40">
-                                <rect key="frame" x="20" y="578.5" width="91.5" height="1"/>
+                                <rect key="frame" x="20" y="579" width="91.5" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5cF-ff-54a">
-                                <rect key="frame" x="20" y="517" width="335" height="30"/>
+                                <rect key="frame" x="20" y="517.5" width="335" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="PE2-Qr-yVg"/>
                                 </constraints>
@@ -310,11 +317,43 @@
                         <outlet property="gplusBtn" destination="TKm-sX-Chl" id="8bx-Zb-QBs"/>
                         <outlet property="logoImgView" destination="XAV-5V-6ZQ" id="2HT-yi-fAv"/>
                         <outlet property="passwordTF" destination="SSz-u5-kKn" id="ogd-oF-eY4"/>
+                        <segue destination="Vo0-md-fGE" kind="show" identifier="register" id="XvM-QS-vvw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7pe-up-aFT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2152.8000000000002" y="-272.11394302848578"/>
+        </scene>
+        <!--Home View Controller-->
+        <scene sceneID="Ajd-gM-rkF">
+            <objects>
+                <viewController storyboardIdentifier="HomeViewController" id="vq9-yh-2Fi" customClass="HomeViewController" customModule="EducationApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Pc4-ko-66E"/>
+                        <viewControllerLayoutGuide type="bottom" id="Kcw-h5-3nw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HqH-Vl-KpM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O0o-A8-fLd">
+                                <rect key="frame" x="161.5" y="318.5" width="51" height="30"/>
+                                <state key="normal" title="LogOut"/>
+                                <connections>
+                                    <action selector="log:" destination="vq9-yh-2Fi" eventType="touchUpInside" id="WBW-Vd-GqS"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="O0o-A8-fLd" firstAttribute="centerX" secondItem="HqH-Vl-KpM" secondAttribute="centerX" id="Y5Q-Q4-eEp"/>
+                            <constraint firstItem="O0o-A8-fLd" firstAttribute="centerY" secondItem="HqH-Vl-KpM" secondAttribute="centerY" id="YYp-Qa-uWs"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EA6-An-Wmh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2986" y="-271"/>
         </scene>
         <!--Registration View Controller-->
         <scene sceneID="uYj-O2-aff">
@@ -387,7 +426,7 @@
                                                         </constraints>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
                                                                 <color key="value" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -422,7 +461,7 @@
                                                         </constraints>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
                                                                 <color key="value" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -490,7 +529,7 @@
                                                         </constraints>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
                                                                 <color key="value" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -524,7 +563,7 @@
                                                         </constraints>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
                                                                 <color key="value" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -558,7 +597,7 @@
                                                         </constraints>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" secureTextEntry="YES"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
                                                                 <color key="value" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -592,7 +631,7 @@
                                                         </constraints>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" secureTextEntry="YES"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
                                                                 <color key="value" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -615,6 +654,9 @@
                                                 <state key="normal" title="REGISTER">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="registerBtnTapped:" destination="Vo0-md-fGE" eventType="touchUpInside" id="cDO-Um-t93"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -678,6 +720,16 @@
                             <constraint firstAttribute="trailing" secondItem="B6U-Rh-dhe" secondAttribute="trailing" id="xTX-wl-A2x"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="bgImgView" destination="mDP-vh-wOJ" id="DK1-WL-W4O"/>
+                        <outlet property="confirmPassTF" destination="V2K-NO-Ov4" id="sRZ-YJ-XGM"/>
+                        <outlet property="emailTF" destination="lOB-6Z-GfV" id="JPl-pL-SD0"/>
+                        <outlet property="firstNameTF" destination="eci-oB-7nI" id="b2b-jC-BWb"/>
+                        <outlet property="lastNameTF" destination="lRf-qT-1Fp" id="Sfh-tY-I3c"/>
+                        <outlet property="mobileTF" destination="rgo-Rl-uh7" id="ppo-P8-oUi"/>
+                        <outlet property="passwordTF" destination="QeX-df-o3O" id="OYc-iw-T52"/>
+                        <outlet property="userNameTF" destination="fe4-Td-xs0" id="q9O-pb-ZLf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hRq-to-lqB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -705,8 +757,13 @@
     <resources>
         <image name="backArrow" width="36" height="36"/>
         <image name="emailId" width="25" height="29"/>
+        <image name="fb" width="77" height="77"/>
+        <image name="gplus" width="77" height="77"/>
         <image name="mobile" width="25" height="29"/>
         <image name="password" width="25" height="29"/>
         <image name="user" width="25" height="29"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="XvM-QS-vvw"/>
+    </inferredMetricsTieBreakers>
 </document>
