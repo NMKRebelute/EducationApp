@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="GalleryTopView" customModule="EducationApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="131"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lwF-1t-2FJ">
+                    <rect key="frame" x="140" y="63" width="40" height="5"/>
+                    <color key="backgroundColor" red="0.0" green="0.42745098040000001" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="Bad-Oi-bgX"/>
+                        <constraint firstAttribute="height" constant="5" id="pqu-n7-XV7"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dVX-1c-492">
+                    <rect key="frame" x="10" y="3" width="300" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="NaM-1N-Wxn"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                    <color key="textColor" red="0.0" green="0.42745098040000001" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eWf-rI-rft">
+                    <rect key="frame" x="10" y="78" width="300" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="S2N-iK-FPf"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.0" green="0.42745098040000001" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="eWf-rI-rft" secondAttribute="trailing" constant="10" id="4pa-9p-3se"/>
+                <constraint firstItem="lwF-1t-2FJ" firstAttribute="centerX" secondItem="U6b-Vx-4bR" secondAttribute="centerX" id="CwU-al-ty7"/>
+                <constraint firstAttribute="trailing" secondItem="dVX-1c-492" secondAttribute="trailing" constant="10" id="MTh-0K-RpX"/>
+                <constraint firstItem="dVX-1c-492" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="10" id="O52-SV-xAp"/>
+                <constraint firstItem="lwF-1t-2FJ" firstAttribute="top" secondItem="dVX-1c-492" secondAttribute="bottom" constant="10" id="crc-Wr-Lhx"/>
+                <constraint firstItem="eWf-rI-rft" firstAttribute="top" secondItem="lwF-1t-2FJ" secondAttribute="bottom" constant="10" id="dX8-yn-Ur8"/>
+                <constraint firstItem="eWf-rI-rft" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="10" id="pWt-Qv-wYv"/>
+                <constraint firstItem="lwF-1t-2FJ" firstAttribute="centerY" secondItem="U6b-Vx-4bR" secondAttribute="centerY" id="yjf-WG-h5C"/>
+            </constraints>
+            <connections>
+                <outlet property="descriptionLbl" destination="eWf-rI-rft" id="s7S-Fc-nMz"/>
+                <outlet property="headingLbl" destination="dVX-1c-492" id="20i-Fh-0eV"/>
+            </connections>
+            <point key="canvasLocation" x="25" y="92.5"/>
+        </collectionReusableView>
+    </objects>
+</document>

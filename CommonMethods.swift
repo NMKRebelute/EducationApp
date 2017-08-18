@@ -100,4 +100,40 @@ class CommonMethods {
         return emailTest.evaluate(with: testStr)
     }
     
+    //MARK: Convert HTML to string
+    
+    func convertHTMLToText(text:String) -> String {
+        
+        guard let data = text.data(using: .utf8) else {
+            return ""
+        }
+        
+        let options: [String: Any] = [
+            NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
+            NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue
+        ]
+        
+        guard let attributedString = try? NSAttributedString(data: data, options: options, documentAttributes: nil) else {
+            return ""
+        }
+        
+        let decodedString = attributedString.string
+        
+        return decodedString
+    }
+    
+    //MARK: LogOut the user 
+    
+    func logOutTheUser() {
+        
+        UserDefaults.standard.setValue(nil, forKey: STORED_USERID)
+        UserDefaults.standard.setValue(nil, forKey: STORED_USERNAME)
+        UserDefaults.standard.setValue(nil, forKey: STORED_FIRSTNAME)
+        UserDefaults.standard.setValue(nil, forKey: STORED_LASTNAME)
+        UserDefaults.standard.setValue(nil, forKey: STORED_EMAIL)
+        UserDefaults.standard.setValue(nil, forKey: STORED_MOBILE)
+        
+        TransitionManager.shared.showLogin()
+    }
+    
 }

@@ -19,6 +19,11 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var fbBtn: UIButton!
     @IBOutlet weak var logoImgView: UIImageView!
     
+    @IBOutlet weak var forgotPassBackView: UIView!
+    @IBOutlet weak var forgotPassEmailTF: UITextField!
+    
+    @IBOutlet weak var forgotViewHeight: NSLayoutConstraint!
+    
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -44,9 +49,30 @@ class LoginViewController: UIViewController {
             }
         }
         
+        forgotPassBackView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        forgotPassBackView.isHidden = true
+        forgotViewHeight.constant = 0
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.forgotBackViewTapped))
+        forgotPassBackView.isUserInteractionEnabled = true
+        forgotPassBackView.addGestureRecognizer(tap)
+        
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().uiDelegate = self
         
+    }
+    
+    func forgotBackViewTapped() {
+        
+        forgotViewHeight.constant = 0
+        
+        UIView.animate(withDuration: 0.5) {
+            
+            self.forgotPassBackView.isHidden = true
+            
+            self.view.layoutIfNeeded()
+            
+        }
     }
 
     @IBAction func loginBtnTapped(_ sender: Any) {
@@ -61,56 +87,109 @@ class LoginViewController: UIViewController {
                 
             }else {
                 
-                CommonMethods.shared.showAlertWith(title: "EducationApp", message: "Please enter a valid email", sender: self, OKActionHandler: {
+                CommonMethods.shared.showAlertWith(title: APPPLICATION_NAME, message: "Please enter a valid email", sender: self, OKActionHandler: {
                     self.dismiss(animated: true, completion: nil)
                 })
             }
             
         }else {
             
-            CommonMethods.shared.showAlertWith(title: "EducationApp", message: "Please fill all the fields", sender: self, OKActionHandler: { 
+            CommonMethods.shared.showAlertWith(title: APPPLICATION_NAME, message: "Please fill all the fields", sender: self, OKActionHandler: {
                 self.dismiss(animated: true, completion: nil)
             })
         }
         
     }
     
-    func signInUser() {
+    @IBAction func forgotPasswordBtnTapped(_ sender: Any) {
         
-        let params:[String:Any] = ["email":emailTF.text!, "password":passwordTF.text!]
+        forgotViewHeight.constant = 150
         
-        APIManager.shared.logInUserWith(parameters: params, showLoader: true) { (errorMessage, model) in
+        UIView.animate(withDuration: 1.0) { 
             
-            if errorMessage != nil {
+            self.forgotPassBackView.isHidden = false
+            self.view.bringSubview(toFront: self.forgotPassBackView)
+            
+            self.view.layoutIfNeeded()
+            
+        }
+        
+    }
+    
+    @IBAction func sendForgetDataTapped(_ sender: Any) {
+        
+        view.endEditing(true)
+        
+        if forgotPassEmailTF.text?.characters.count == 0 {
+            
+            CommonMethods.shared.showAlertWith(title: APPPLICATION_NAME, message: "Please Enter the E-mail", sender: self, OKActionHandler: {
+                self.dismiss(animated: true, completion: nil)
+            })
+            
+        }else {
+            
+            if CommonMethods.shared.isValidEmail(testStr: forgotPassEmailTF.text!) {
                 
-                CommonMethods.shared.showAlertWith(title: "EducationApp", message: errorMessage!, sender: self, OKActionHandler: { 
+                sendForgetPasswordData()
+                
+            }else {
+                
+                CommonMethods.shared.showAlertWith(title: APPPLICATION_NAME, message: "Please Enter valid E-mail", sender: self, OKActionHandler: {
                     self.dismiss(animated: true, completion: nil)
                 })
                 
-                return
+            }
+        }
+        
+//        forgotViewHeight.constant = 0
+//        
+//        UIView.animate(withDuration: 0.5) {
+//            
+//            self.forgotPassBackView.isHidden = true
+//            
+//            self.view.layoutIfNeeded()
+//            
+//        }
+    }
+    
+    func sendForgetPasswordData() {
+        
+        let params:[String:Any] = ["email":forgotPassEmailTF.text!]
+        
+        APIManager.shared.sendForgetPasswordDataWith(parameters: params, showLoader: true) { (errorString, responseDict) in
+            
+            if errorString != nil {
+                
+                CommonMethods.shared.showAlertWith(title: APPPLICATION_NAME, message: errorString!, sender: self, OKActionHandler: {
+                    
+                    self.dismiss(animated: true, completion: nil)
+                })
+             return
             }
             
-            if model != nil {
+            if responseDict != nil {
                 
-                if (model?.userID.characters.count)! > 0 {
+                CommonMethods.shared.showAlertWith(title: APPPLICATION_NAME, message: "We have send email so please check your email id", sender: self, OKActionHandler: {
                     
-                    UserDefaults.standard.setValue(model?.userID, forKey: STORED_USERID)
-                    UserDefaults.standard.setValue(model?.userName, forKey: STORED_USERNAME)
-                    UserDefaults.standard.setValue(model?.firstName, forKey: STORED_FIRSTNAME)
-                    UserDefaults.standard.setValue(model?.lastName, forKey: STORED_LASTNAME)
-                    UserDefaults.standard.setValue(model?.emailId, forKey: STORED_EMAIL)
-                    UserDefaults.standard.setValue(model?.mobileNumber, forKey: STORED_MOBILE)
+                    self.forgotViewHeight.constant = 0
                     
-                    
-                    TransitionManager.shared.showHome()
-                    
-                }
+                    UIView.animate(withDuration: 0.5) {
+                        
+                        self.forgotPassBackView.isHidden = true
+                        
+                        self.view.layoutIfNeeded()
+                        
+                    }
+
+                    self.dismiss(animated: true, completion: nil)
+                })
                 
             }
             
         }
         
     }
+    
     
     @IBAction func signUpBtnTapped(_ sender: Any) {
         
@@ -141,7 +220,44 @@ class LoginViewController: UIViewController {
                 if (error == nil){
 //                    self.dict = result as! [String : AnyObject]
                     print(result!)
-//                    print(self.dict)
+
+                    var params:[String:Any] = [:]
+                    
+                    if let userDict = result as? [String:AnyObject] {
+                        
+                        
+                        if let emailID = userDict["email"] as? String {
+                            params["email"] = emailID
+                        }
+                        
+                        if let firstName = userDict["first_name"] as? String {
+                            params["first_name"] = firstName
+                        }
+                        
+                        if let lastName = userDict["last_name"] as? String {
+                            params["last_name"] = lastName
+                        }
+                        
+                        if userDict["id"] != nil {
+                            params["unique_id"] = "\(userDict["id"]!)"
+                        }
+                        
+                        if let picDict = userDict["picture"] as? [String:AnyObject] {
+                            
+                            if let dataDict = picDict["data"] as? [String:AnyObject] {
+                                
+                                if let URLString = dataDict["url"] as? String {
+                                    params["image_url"] = URLString
+                                }
+                                
+                            }
+                            
+                        }
+                        
+                    }
+                    
+                    self.logInUserWithSocialLogins(loginType: 0, parameters: params)
+                    
                 }
             })
         }
@@ -150,6 +266,74 @@ class LoginViewController: UIViewController {
     @IBAction func gplusBtnTapped(_ sender: Any) {
         
         GIDSignIn.sharedInstance().signIn()
+    }
+    
+    func signInUser() {
+        
+        let params:[String:Any] = ["email":emailTF.text!, "password":passwordTF.text!]
+        
+        APIManager.shared.logInUserWith(parameters: params, showLoader: true) { (errorMessage, model) in
+            
+            if errorMessage != nil {
+                
+                CommonMethods.shared.showAlertWith(title: APPPLICATION_NAME, message: errorMessage!, sender: self, OKActionHandler: {
+                    self.dismiss(animated: true, completion: nil)
+                })
+                
+                return
+            }
+            
+            if model != nil {
+                
+                if (model?.userID.characters.count)! > 0 {
+                    
+                    UserDefaults.standard.setValue(model?.userID, forKey: STORED_USERID)
+                    UserDefaults.standard.setValue(model?.userName, forKey: STORED_USERNAME)
+                    UserDefaults.standard.setValue(model?.firstName, forKey: STORED_FIRSTNAME)
+                    UserDefaults.standard.setValue(model?.lastName, forKey: STORED_LASTNAME)
+                    UserDefaults.standard.setValue(model?.emailId, forKey: STORED_EMAIL)
+                    UserDefaults.standard.setValue(model?.mobileNumber, forKey: STORED_MOBILE)
+                    
+                    
+                    TransitionManager.shared.showHome()
+                    
+                }
+                
+            }
+            
+        }
+        
+    }
+    
+    func logInUserWithSocialLogins(loginType:Int, parameters:[String:Any]) {
+        
+        // if loginType = 0 ----> Facebook Login, if loginType = 1 ----> Google Login
+        
+        var params:[String:Any] = parameters
+        
+        APIManager.shared.logInUserWithSocialLogins(parameters: params, showLoader: true) { (errorMessage, model) in
+            
+            if errorMessage != nil {
+                CommonMethods.shared.showAlertWith(title: APPPLICATION_NAME, message: errorMessage!, sender: self, OKActionHandler: {
+                    self.dismiss(animated: true, completion: nil)
+                })
+                
+                return
+            }
+            
+            if (model?.uniqueID.characters.count)! > 0 {
+                
+                UserDefaults.standard.setValue(model?.uniqueID, forKey: STORED_USERID)
+                UserDefaults.standard.setValue(model?.firstName, forKey: STORED_FIRSTNAME)
+                UserDefaults.standard.setValue(model?.lastName, forKey: STORED_LASTNAME)
+                UserDefaults.standard.setValue(model?.email, forKey: STORED_EMAIL)
+                
+                TransitionManager.shared.showHome()
+                
+            }
+            
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -175,16 +359,48 @@ extension LoginViewController: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         
         if (error == nil) {
-            // Perform any operations on signed in user here.
-            let userId = user.userID                  // For client-side use only!
-            let idToken = user.authentication.idToken // Safe to send to the server
-            let fullName = user.profile.name
+            
+            let userId = user.userID
+//            let idToken = user.authentication.idToken 
+//            let fullName = user.profile.name
             let givenName = user.profile.givenName
             let familyName = user.profile.familyName
             let email = user.profile.email
-            // ...
-        } else {
             
+            var params:[String:Any] = [:]
+            
+            if email != nil {
+                params["email"] = email!
+            }
+            
+            if givenName != nil {
+                params["first_name"] = givenName!
+            }
+            
+            if familyName != nil {
+                params["last_name"] = familyName!
+            }
+            
+            if userId != nil {
+                params["unique_id"] = userId!
+            }
+            
+            if user.profile.hasImage == true {
+                let imgURL = user.profile.imageURL(withDimension: 400)
+                
+                if imgURL != nil {
+                    params["image_url"] = imgURL!
+                }
+                
+            }
+            
+            logInUserWithSocialLogins(loginType: 1, parameters: params)
+            
+            
+        } else {
+            CommonMethods.shared.showAlertWith(title: APPPLICATION_NAME, message: error.localizedDescription, sender: self, OKActionHandler: { 
+                self.dismiss(animated: true, completion: nil)
+            })
         }
         
     }
@@ -194,6 +410,7 @@ extension LoginViewController: GIDSignInDelegate {
     }
     
 }
+
 
 extension LoginViewController: GIDSignInUIDelegate {
     

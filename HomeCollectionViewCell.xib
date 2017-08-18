@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="HomeCollectionViewCell" customModule="EducationApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="280" height="357"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="280" height="357"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgImg" translatesAutoresizingMaskIntoConstraints="NO" id="PTX-Dj-4yQ">
+                        <rect key="frame" x="0.0" y="0.0" width="280" height="357"/>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9WS-mA-JwA">
+                        <rect key="frame" x="0.0" y="0.0" width="280" height="357"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lev-rd-Wol">
+                                <rect key="frame" x="10" y="148" width="260" height="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="kat-Xf-WZP"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIm-sd-NCj">
+                                <rect key="frame" x="10" y="151" width="260" height="122"/>
+                                <string key="text">H.E. Sheikh Mansour attended the 10th graduation ceremony of 250 graduates from Abu Dhabi City. hdhhh eihiyeie ehfuoefeoe ehfgegfef efegfegf heofefei efiogeifioe.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Congratulations Class 2017" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xbJ-1B-o0A">
+                                <rect key="frame" x="10" y="122" width="260" height="23"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="N3a-4p-yu7">
+                                <rect key="frame" x="20" y="300" width="240" height="37"/>
+                            </pageControl>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.15179256134969324" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="N3a-4p-yu7" secondAttribute="trailing" constant="20" id="7Sn-Ho-d2V"/>
+                            <constraint firstAttribute="trailing" secondItem="lev-rd-Wol" secondAttribute="trailing" constant="10" id="Bph-Hr-k8l"/>
+                            <constraint firstItem="lev-rd-Wol" firstAttribute="centerY" secondItem="9WS-mA-JwA" secondAttribute="centerY" constant="-30" id="Bw9-fN-zLx"/>
+                            <constraint firstItem="lev-rd-Wol" firstAttribute="leading" secondItem="9WS-mA-JwA" secondAttribute="leading" constant="10" id="J5R-Zw-DIG"/>
+                            <constraint firstItem="HIm-sd-NCj" firstAttribute="leading" secondItem="lev-rd-Wol" secondAttribute="leading" id="NhA-8C-UYT"/>
+                            <constraint firstItem="lev-rd-Wol" firstAttribute="top" secondItem="xbJ-1B-o0A" secondAttribute="bottom" constant="3" id="U67-sH-qdI"/>
+                            <constraint firstItem="N3a-4p-yu7" firstAttribute="leading" secondItem="9WS-mA-JwA" secondAttribute="leading" constant="20" id="Z0m-Xr-rOd"/>
+                            <constraint firstItem="HIm-sd-NCj" firstAttribute="trailing" secondItem="lev-rd-Wol" secondAttribute="trailing" id="eKH-IS-vnr"/>
+                            <constraint firstItem="HIm-sd-NCj" firstAttribute="top" secondItem="lev-rd-Wol" secondAttribute="bottom" constant="3" id="rZO-TC-Nmc"/>
+                            <constraint firstAttribute="bottom" secondItem="N3a-4p-yu7" secondAttribute="bottom" constant="20" id="smY-wT-PE6"/>
+                            <constraint firstItem="xbJ-1B-o0A" firstAttribute="trailing" secondItem="lev-rd-Wol" secondAttribute="trailing" id="vOs-KR-WO5"/>
+                            <constraint firstItem="xbJ-1B-o0A" firstAttribute="leading" secondItem="lev-rd-Wol" secondAttribute="leading" id="ybv-Wk-lLu"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="9WS-mA-JwA" firstAttribute="top" secondItem="PTX-Dj-4yQ" secondAttribute="top" id="6Fd-hq-u9L"/>
+                <constraint firstAttribute="bottom" secondItem="PTX-Dj-4yQ" secondAttribute="bottom" id="8w3-ed-c0x"/>
+                <constraint firstAttribute="trailing" secondItem="PTX-Dj-4yQ" secondAttribute="trailing" id="VBl-ic-gOD"/>
+                <constraint firstItem="9WS-mA-JwA" firstAttribute="bottom" secondItem="PTX-Dj-4yQ" secondAttribute="bottom" id="YqM-6N-7Hj"/>
+                <constraint firstItem="PTX-Dj-4yQ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="fiM-OK-UyK"/>
+                <constraint firstItem="9WS-mA-JwA" firstAttribute="leading" secondItem="PTX-Dj-4yQ" secondAttribute="leading" id="hxD-yZ-vwA"/>
+                <constraint firstItem="PTX-Dj-4yQ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="lZK-yX-5e0"/>
+                <constraint firstItem="9WS-mA-JwA" firstAttribute="trailing" secondItem="PTX-Dj-4yQ" secondAttribute="trailing" id="zK5-9r-g0Z"/>
+            </constraints>
+            <size key="customSize" width="280" height="357"/>
+            <connections>
+                <outlet property="bgImgView" destination="PTX-Dj-4yQ" id="JdP-VI-rBg"/>
+                <outlet property="contentLbl" destination="HIm-sd-NCj" id="Dvc-Tp-mGw"/>
+                <outlet property="headingLbl" destination="xbJ-1B-o0A" id="JDe-dK-hzF"/>
+                <outlet property="pageControl" destination="N3a-4p-yu7" id="8dW-mh-JSg"/>
+                <outlet property="transParentView" destination="9WS-mA-JwA" id="7Hh-9X-dlk"/>
+            </connections>
+            <point key="canvasLocation" x="21" y="26.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="bgImg" width="539" height="960"/>
+    </resources>
+</document>

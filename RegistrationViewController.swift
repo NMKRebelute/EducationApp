@@ -52,21 +52,21 @@ class RegistrationViewController: UIViewController {
                     
                 }else {
                     
-                    CommonMethods.shared.showAlertWith(title: "EducationApp", message: "Passwords doesn't match", sender: self, OKActionHandler: {
+                    CommonMethods.shared.showAlertWith(title: APPPLICATION_NAME, message: "Passwords doesn't match", sender: self, OKActionHandler: {
                         self.dismiss(animated: true, completion: nil)
                     })
                 }
                 
             }else {
                 
-                CommonMethods.shared.showAlertWith(title: "EducationApp", message: "Please enter valid email", sender: self, OKActionHandler: {
+                CommonMethods.shared.showAlertWith(title: APPPLICATION_NAME, message: "Please enter valid email", sender: self, OKActionHandler: {
                     self.dismiss(animated: true, completion: nil)
                 })
             }
             
         }else {
             
-            CommonMethods.shared.showAlertWith(title: "EducationApp", message: "Please fill all the fields", sender: self, OKActionHandler: {
+            CommonMethods.shared.showAlertWith(title: APPPLICATION_NAME, message: "Please fill all the fields", sender: self, OKActionHandler: {
                 self.dismiss(animated: true, completion: nil)
             })
         }
@@ -81,7 +81,7 @@ class RegistrationViewController: UIViewController {
             
             if errorMessage != nil {
                 
-                CommonMethods.shared.showAlertWith(title: "EducationApp", message: errorMessage!, sender: self, OKActionHandler: { 
+                CommonMethods.shared.showAlertWith(title: APPPLICATION_NAME, message: errorMessage!, sender: self, OKActionHandler: { 
                     self.dismiss(animated: true, completion: nil)
                 })
                 

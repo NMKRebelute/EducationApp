@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SlideMenuControllerSwift
 
 class TransitionManager {
     
@@ -36,7 +37,11 @@ class TransitionManager {
         let homeVC = mainStoryBoard.instantiateViewController(withIdentifier: "HomeViewController")
         let navVC = UINavigationController(rootViewController: homeVC)
         
-        appDelegate.window?.rootViewController = navVC
+        let menuVC = mainStoryBoard.instantiateViewController(withIdentifier: "MenuViewController")
+        
+        let slideMenuVC = SlideMenuController(mainViewController: navVC, leftMenuViewController: menuVC)
+        
+        appDelegate.window?.rootViewController = slideMenuVC
         appDelegate.window?.makeKeyAndVisible()
         
     }

@@ -73,7 +73,7 @@ class SplashViewController: UIViewController {
             
             if errorMessage != nil {
                 
-                CommonMethods.shared.showAlertWith(title: "EducationApp", message: errorMessage!, sender: self, OKActionHandler: { 
+                CommonMethods.shared.showAlertWith(title: APPPLICATION_NAME, message: errorMessage!, sender: self, OKActionHandler: {
                     self.dismiss(animated: true, completion: nil)
                 })
                 return
